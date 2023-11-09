@@ -19,7 +19,7 @@ python3 ssam2bed.py exemple.ssam outputssam2bed.bed<br>
 #
 Cas d'utilisation de la librairie :<br>
 
-FormatTools.py convert exemple.bed  convertbed2gmf.gmf<br>
-FormatTools.py convert exemple.bed  convertbed2gmf.gmf<br>
-FormatTools.py convert exemple.ssam  convertssam2bed.gmf<br>
-FormatTools.py convert exemple.gmf  convertgmf2bed.gmf<br>
+python3 FormatTools.py convert exemple.bed  convertbed2gmf.gmf<br>
+python3 FormatTools.py convert exemple.bed  convertbed2gmf.gmf<br>
+python3 FormatTools.py convert exemple.ssam  convertssam2bed.gmf<br>
+python3 FormatTools.py convert exemple.gmf  convertgmf2bed.gmf<br>
