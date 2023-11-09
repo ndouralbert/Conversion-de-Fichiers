@@ -49,7 +49,26 @@ def convert_command(source_file, target_file):
                         output_gmf.write(f"Seq\t{key}\n")
                         output_gmf.write('\n'.join(data) + '\n')
                 print("Conversion successful.")
+            elif source_format == "gmf" and target_format == "bed":
+                print("Converting from gmf to bed...")
+                with open(source_file, 'r') as input_gmf, open(target_file, 'w') as output_bed:
+                    gmf_lines = input_gmf.readlines()
+                    bed_lines = converter.gmf2bed(gmf_lines)
+                    for bed_entry in bed_lines:
+                        output_bed.write(bed_entry)
+                print("Conversion successful.")
+            elif source_format == "bed" and target_format == "ssam":
+                print("Converting from bed to sam...")
+                with open(source_file, 'r') as input_bed, open(target_file, 'w') as output_sam:
+                    bed_lines = input_bed.readlines()
+                    for bed_line in bed_lines:
+                        seq = converter.bed2ssam(bed_line)
+                        sam_entry = f"{seq.ID}\t{seq.Strand}\t{seq.Chrom}\t{seq.ChromStart}\t{seq.CIGAR}\n"
+                        output_sam.write(sam_entry)
+                print("Conversion successful.")
             # Ajouter d'autres cas de conversion au besoin
+            else:
+                raise ValueError("Conversion not supported for the given formats.")
 
             print(f"Conversion from {source_format} to {target_format} successful.")
         else:
@@ -58,7 +77,6 @@ def convert_command(source_file, target_file):
         print(f"Erreur lors de la conversion : {e}")
     except Exception as e:
         print(f"Erreur lors de la conversion : {e}")
-
 
 if __name__ == "__main__":
     try:

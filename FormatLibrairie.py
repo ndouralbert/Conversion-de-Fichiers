@@ -1,5 +1,5 @@
 import re
-
+#FormatLibrairie.py
 class Sequence:
     def __init__(self, ID: str, Strand: str, Chrom: str, ChromStart: int, ChromEnd: int, CIGAR: str):
         self.ID = ID
@@ -38,6 +38,7 @@ class FormatConverter:
         length = end - start + 1
         cigar = f"{length}M"
         return Sequence(QName, Strand, Rname, Pos, end, cigar)
+
 
     def ssam2bed(self, sam_line):
         fields = sam_line.strip().split('\t')
